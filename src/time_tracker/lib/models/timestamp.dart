@@ -13,6 +13,8 @@ class Timestamp {
     _createdAt = createdAt != null ? createdAt : DateTime.now().toUtc();
   }
 
+  int get value => _value;
+
   update(int newValue) {
     _value = newValue;
   }
