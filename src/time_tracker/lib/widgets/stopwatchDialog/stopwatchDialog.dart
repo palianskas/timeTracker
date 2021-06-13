@@ -55,7 +55,7 @@ class StopwatchDialog extends HookWidget {
         ),
         FractionallySizedBox(
           widthFactor: 0.45,
-          child: OutlinedButton(
+          child: ElevatedButton(
             onPressed: () {
               if (_formKey.currentState!.validate()) {
                 Navigator.pop(context, Timestamp(_nameInputController.text));
