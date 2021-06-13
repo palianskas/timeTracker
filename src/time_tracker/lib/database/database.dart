@@ -12,8 +12,6 @@ class Database {
 
     _instance!._objectDatabase = ObjectDB(FileSystemStorage(
         (await getApplicationDocumentsDirectory()).path + '/database.db'));
-
-    await _instance!._objectDatabase!.cleanup();
   }
 
   static Future<Database> get singleton async {
@@ -25,11 +23,9 @@ class Database {
   }
 
   Future<List<Map>> getAll() async {
-    print(_objectDatabase);
-    print(await _objectDatabase!.find({
+    return _objectDatabase!.find({
       Op.gte: {'value': 0}
-    }));
-    return _objectDatabase!.find({'value': 0});
+    });
   }
 
   Future<Map> findById(String id) async {
