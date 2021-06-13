@@ -35,12 +35,14 @@ class StopwatchBloc {
         : Timer.periodic(_interval, _onTick);
   }
 
-  void stop() {
+  void stop({bool save = true}) {
     if (_timer != null) {
       _timer!.cancel();
     }
 
-    _saveToRepo();
+    if (save) {
+      _saveToRepo();
+    }
   }
 
   void reset() {
