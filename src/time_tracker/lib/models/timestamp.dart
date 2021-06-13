@@ -8,12 +8,15 @@ class Timestamp {
 
   static Uuid _uuid = new Uuid();
 
-  Timestamp(this._name, this._value, {String? id, DateTime? createdAt}) {
+  Timestamp(this._name, {int? value, String? id, DateTime? createdAt}) {
     _id = id != null ? id : _uuid.v4();
+    _value = value != null ? value : 0;
     _createdAt = createdAt != null ? createdAt : DateTime.now().toUtc();
   }
 
   int get value => _value;
+  String get name => _name;
+  String get id => _id;
 
   update(int newValue) {
     _value = newValue;
@@ -37,7 +40,9 @@ class Timestamp {
   }
 
   static Timestamp fromMap(Map map) {
-    return new Timestamp(map['name'], map['value'],
-        id: map['id'], createdAt: DateTime.tryParse(map['createdAt']));
+    return new Timestamp(map['name'],
+        value: map['value'],
+        id: map['id'],
+        createdAt: DateTime.tryParse(map['createdAt']));
   }
 }
