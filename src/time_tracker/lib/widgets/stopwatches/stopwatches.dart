@@ -20,10 +20,14 @@ class Stopwatches extends StatelessWidget {
               (timestamp) => BlocProvider.of<TimestampsBloc>(context).add(
                     UpdateTimestamp(timestamp),
                   );
-          final onDelete =
-              (timestamp) => BlocProvider.of<TimestampsBloc>(context).add(
-                    DeleteTimestamp(timestamp),
-                  );
+          final onDelete = (timestamp) {
+            BlocProvider.of<TimestampsBloc>(context).add(
+              DeleteTimestamp(timestamp),
+            );
+            BlocProvider.of<TimestampsBloc>(context).add(
+              LoadTimestamps(),
+            );
+          };
 
           return ListView.builder(
               itemCount: timestamps.length,

@@ -9,7 +9,7 @@ class StopwatchBloc {
   Timer? _timer;
   final Duration _interval = Duration(seconds: 1);
 
-  late final Timestamp timestamp;
+  late Timestamp timestamp;
 
   StopwatchBloc(this.timestamp, this.onSave) {
     _controller.add(this.timestamp);

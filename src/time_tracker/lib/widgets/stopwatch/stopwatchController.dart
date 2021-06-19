@@ -18,6 +18,11 @@ class Stopwatch extends StatelessWidget {
       builder: (context) {
         final stopwatch = useMemoized(() => StopwatchBloc(timestamp, onSave));
 
+        if (stopwatch.timestamp.value != this.timestamp.value ||
+            stopwatch.timestamp.id != this.timestamp.id) {
+          stopwatch.timestamp = this.timestamp;
+        }
+
         return StreamBuilder(
             stream: stopwatch.stream,
             builder: (context, snapshot) {
